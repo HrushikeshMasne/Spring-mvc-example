@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>MyFirstMVC</display-name>
+  
+  <servlet>
+    <servlet-name>spring-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+     <servlet-name>spring-dispatcher</servlet-name>
+     <url-pattern>/</url-pattern>             <!-- handler mapping -->
+  </servlet-mapping>
+  
+  <context-param>
+   <param-name>contextConfigLocation</param-name>
+   <param-value>/WEB-INF/spring-dispatcher-servlet.xml</param-value>
+   </context-param>
+
+   <listener>
+   <listener-class>
+     org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  
+</web-app>
+
+
+=================dispatcher==============
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+          
+
+          
+        <context:component-scan base-package="com.gontuseries.hellocontroller"/>
+          
+         <mvc:annotation-driven />
+          
+          <!--    <mvc:interceptors>
+          <bean class="com.gontuseries.hellocontroller.InterceptorNotifier" />
+          </mvc:interceptors>  -->
+          
+          <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+             <property name="prefix">
+                 <value>/WEB-INF/</value>
+             </property>
+             <property name="suffix">
+                 <value>.jsp</value>
+             </property>
+             
+          </bean>
+        
+        
+        </beans>
+        
+
+
+<!--  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+          
+          <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+          
+          <bean name="/welcome.html" class="com.gontuseries.hellocontroller.HelloController"></bean>
+          
+          <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+             <property name="prefix">
+                 <value>/WEB-INF/</value>
+             </property>
+             <property name="suffix">
+                 <value>.jsp</value>
+             </property>
+             
+          </bean>
+        
+        
+        </beans>  -->
+        
+
+====================book.java==============
+
+package com.gontuseries.hellocontroller;
+
+
+import java.util.ArrayList;
+import java.util.Date;
+
+
+public class Book {
+
+	public String bookName;
+	public String bookAuthor;
+	public String bookPrice;
+	public Date bookDOP;
+	//public ArrayList<String> studentSkills;
+	/**
+	 * @return the bookName
+	 */
+	public String getBookName() {
+		return bookName;
+	}
+	/**
+	 * @param bookName the bookName to set
+	 */
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	/**
+	 * @return the bookAuthor
+	 */
+	public String getBookAuthor() {
+		return bookAuthor;
+	}
+	/**
+	 * @param bookAuthor the bookAuthor to set
+	 */
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
+	/**
+	 * @return the bookPrice
+	 */
+	public String getBookPrice() {
+		return bookPrice;
+	}
+	/**
+	 * @param bookPrice the bookPrice to set
+	 */
+	public void setBookPrice(String bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	/**
+	 * @return the bookPublishDate
+	 */
+	/**
+	 * @return the bookDOP
+	 */
+	public Date getBookDOP() {
+		return bookDOP;
+	}
+	/**
+	 * @param bookDOP the bookDOP to set
+	 */
+	public void setBookDOP(Date bookDOP) {
+		this.bookDOP = bookDOP;
+	}
+	
+	
+	
+//	public Long getStudentMobile() {
+//		return studentMobile;
+//	}
+//	/**
+//	 * @param studentMobile the studentMobile to set
+//	 */
+//	public void setStudentMobile(Long studentMobile) {
+//		this.studentMobile = studentMobile;
+//	}
+//	/**
+//	 * @return the studentName
+//	 */
+//	public String getStudentName() {
+//		return studentName;
+//	}
+//	/**
+//	 * @param studentName the studentName to set
+//	 */
+//	public void setStudentName(String studentName) {
+//		this.studentName = studentName;
+//	}
+//	/**
+//	 * @return the studentHobby
+//	 */
+//	public String getStudentHobby() {
+//		return studentHobby;
+//	}
+//	/**
+//	 * @param studentHobby the studentHobby to set
+//	 */
+//	public void setStudentHobby(String studentHobby) {
+//		this.studentHobby = studentHobby;
+//	}
+//	/**
+//	 * @return the mobileNo
+//	 */
+//
+//	/**
+//	 * @return the studentDOB
+//	 */
+//	public Date getStudentDOB() {
+//		return studentDOB;
+//	}
+//	/**
+//	 * @param studentDOB the studentDOB to set
+//	 */
+//	public void setStudentDOB(Date studentDOB) {
+//		this.studentDOB = studentDOB;
+//	}
+	/**
+	 * @return the studentSkills
+	 */
+	
+	
+	
+	
+}
+
+====ApplicationForm.jsp==========
+
+<html>
+  <body>
+    
+        <h1 style="text-align:center;">Student Information System</h1>
+   
+   <form method="post" action="/StudentInfoSystem/SubmittedForm.html" style="width:250px; margin:0 auto;">
+
+   <label>Book Name :</label><input type="text" name="bookName"/>
+   <br/>
+   <br/>
+    <label>Book Author :</label><input type="text" name="bookAuthor"/><br/><br/>
+    
+       <label>Book Price :</label><input type="text" name="bookPrice"/><br/><br/>
+    
+  <label>Book Publish date :</label><input type="text" name="bookDOP"/><br/><br/>
+      
+     <!--     <label>Student's skill set :</label>
+               <select name="studentSkills" multiple>
+                <option value="Spring core">Spring Core</option>
+                <option value="AWS">AWS</option>
+                <option value="Hibernate">Hibernate</option>
+                <option value="Vue.js">Vue.JS</option>
+               </select>
+        <br/><br/> --> 
+    
+    
+    <input type="submit" value="Submit"/>
+    </form>
+    
+  </body>
+</html>
+
+===============HelloController.java==========
+
+package com.gontuseries.hellocontroller;
+
+import java.util.Date;
+
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HelloController {
+
+	@RequestMapping(value = "/ApplicationForm.html", method = RequestMethod.GET)
+	public ModelAndView hw() {
+
+		ModelAndView mav = new ModelAndView("ApplicationForm"); // view name
+		return mav;
+	}
+
+	@RequestMapping(value = "/SubmittedForm.html", method = RequestMethod.POST)
+	public ModelAndView hww(@ModelAttribute("book1") Book book1) {
+
+		ModelAndView mav = new ModelAndView("SubmittedForm"); // view name
+		// mav.addObject("welcomeMessage", "Student name is "+ name + " and student
+		// hobby is " + hobby);
+		return mav;
+	}
+
+	
+
+}
+
+==================SubmittedForm==========
+
+<html>
+  <body>
+  <div style="width:400px; margin:0 auto;">
+  <h1>Details of ${book1.bookName}</h1>
+     <h4>${book1.bookName}'s Author :${book1.bookAuthor}</h4>
+         <h4>${book1.bookName}'s Price :${book1.bookPrice}</h4>
+     <h4>${book1.bookName}'s DOP :${book1.bookDOP}</h4>
+     <!-- <h1>${studentd.studentSkills}</h1>  --> 
+     </div>
+    </body>
+</html>
+
+
